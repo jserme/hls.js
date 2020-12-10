@@ -320,13 +320,10 @@ export class TimelineController implements ComponentAPI {
           }
           if (!textTrack) {
             textTrack = this.createTextTrack('subtitles', track.name, track.lang);
+            (textTrack as any).groupId = track.groupId;
           }
           if (textTrack) {
-            if (track.default) {
-              textTrack.mode = this.hls.subtitleDisplay ? 'showing' : 'hidden';
-            } else {
-              textTrack.mode = 'disabled';
-            }
+            textTrack.mode = 'disabled';
             this.textTracks.push(textTrack);
           }
         });
